@@ -1,29 +1,31 @@
+const letters = document.querySelectorAll("div");
+/*pink, yellow, orange, skin, teal*/
+const palette = ['#EAC435', '#1E96FC', '#FF6F59', '#D90368','#A246DD'];
+const section = document.querySelector(".letter");
+let clickedCount = 0;
 
+section.addEventListener("mouseenter", function() {
+    for (const letter of letters){
+        letter.addEventListener("mousedown", function() 
+        { letter.style.opacity = '0';
+        clickedCount++;
+        console.log(clickedCount);
+          // letter.classList.add("transparent");
+          if (clickedCount === 61) {
+            // All divs have been clicked
+            clickedCount = 0;
+            const message = document.createElement("p");
+            message.textContent = "All divs have been clicked!";
+            section.appendChild(message);
+        }
+        });
+    }
+})
 
-// function getRandomRadius() {
-//     return Math.random() < 0.5 ? '8%' : '0%';
-// }
+section.addEventListener("mouseleave", function(){
+        for (const letter of letters){
+            letter.style.opacity = '1';
+            }
+        });
 
-function getMoving() {
-    return Math.random() < 0.5 ? '0.9' : '1';
-   
-}
-
-
-function applyRandomStyles(element) {
-    // element.style.borderRadius = getRandomRadius(); 
-    element.style.opacity = getMoving(); // Random translation up to 10px
-}
-
-var colorBoxes = document.querySelectorAll('div');
-
-colorBoxes.forEach(function(box) {
-    applyRandomStyles(box);
-  });
-
-  setInterval(function() {
-    colorBoxes.forEach(function(box) {
-      applyRandomStyles(box);
-    });
-  }, 100);
  
